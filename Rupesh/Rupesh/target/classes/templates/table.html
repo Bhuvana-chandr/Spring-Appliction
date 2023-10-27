@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .add-person {
+            margin-top: 20px;
+        }
+
+        .add-person input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Table</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Serial Number</th>
+        <th>Name</th>
+        <th>Image</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person : ${people}">
+        <td th:text="${person.id}"></td>
+        <td th:text="${person.name}"></td>
+        <td><img th:src="${person.image}" alt="Person Image" width="100" height="100"></td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="add-person">
+    <h2>Add a Person</h2>
+    <form id="addPersonForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image" required>
+        <button type="button" onclick="addPerson()">Add Person</button>
+    </form>
+</div>
+
+<script>
+    const peopleTable = document.querySelector("table tbody");
+    const addPersonForm = document.getElementById("addPersonForm");
+
+    function addPerson() {
+        const name = document.getElementById("name").value;
+        const image = document.getElementById("image").value;
+
+        // Create a new row
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+            <td>${peopleTable.rows.length}</td>
+            <td>${name}</td>
+            <td><img src="${image}" alt="Person Image" width="100" height="100"></td>
+        `;
+
+        // Append the new row to the table
+        peopleTable.appendChild(newRow);
+
+        // Clear the form fields
+        addPersonForm.reset();
+    }
+</script>
+</body>
+</html>
+
+
