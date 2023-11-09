@@ -53,12 +53,12 @@
         <input type="text" id="name" name="name" required>
         <label for="image">Image URL:</label>
         <input type="text" id="image" name="image" required>
-        <button type="button" onclick="addPerson()">Add Person</button>
+        <button type="button" onclick="addPerson()">Add Person To the table</button>
     </form>
 </div>
 
 <script>
-    const peopleTable = document.querySelector("table tbody");
+    const peopleTable = document.querySelector ("table tbody");
     const addPersonForm = document.getElementById("addPersonForm");
 
     function addPerson() {
